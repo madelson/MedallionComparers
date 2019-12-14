@@ -1,0 +1,31 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedallionComparers", "MedallionComparers\MedallionComparers.csproj", "{87DAD1CD-9B61-4527-B993-8FAC2A50A043}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedallionComparers.Tests", "MedallionComparers.Tests\MedallionComparers.Tests.csproj", "{109F1469-F54A-48E8-A19F-8F61A23EC382}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87DAD1CD-9B61-4527-B993-8FAC2A50A043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87DAD1CD-9B61-4527-B993-8FAC2A50A043}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87DAD1CD-9B61-4527-B993-8FAC2A50A043}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87DAD1CD-9B61-4527-B993-8FAC2A50A043}.Release|Any CPU.Build.0 = Release|Any CPU
+		{109F1469-F54A-48E8-A19F-8F61A23EC382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{109F1469-F54A-48E8-A19F-8F61A23EC382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{109F1469-F54A-48E8-A19F-8F61A23EC382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{109F1469-F54A-48E8-A19F-8F61A23EC382}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A641C94-1A1C-4BDF-A002-FBBB2B34D20C}
+	EndGlobalSection
+EndGlobal
