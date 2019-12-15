@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Medallion.Collections
 {
+    /// <summary>
+    /// Contains utilities for creating and working with <see cref="IComparer{T}"/>s
+    /// </summary>
     public static partial class Comparers
     {
         /// <summary>
