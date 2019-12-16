@@ -46,7 +46,7 @@ Each comparer is designed for speed, for example each will iterate the enumerabl
 
 The `Comparers` class contains utility methods related to `IComparer<T>`.
 
-##### Comparer<T> Create<T, TKey>(Func<T, TKey> keySelector, IComparer<TKey>? keyComparer = null)
+##### `Comparer<T> Create<T, TKey>(Func<T, TKey> keySelector, IComparer<TKey>? keyComparer = null)`
 
 Creates a comparer which compares elements of type `T` by first projecting them to type `TKey`, similar to what happens with `Enumerable.OrderBy`. This makes it easy and concise to create custom comparers on the fly.
 
@@ -54,7 +54,7 @@ Creates a comparer which compares elements of type `T` by first projecting them 
 
 The extension method `IComparer<T> Reverse<T>(this IComparer<T> comparer)` returns a comparer whose ordering is the opposite of the given comparer. The static utility `IComparer<T> Reverse<T>()` returns a cached comparer instance which is the equivalent of calling `Comparer<T>.Default.Reverse()`.
 
-##### IComparer<T> ThenBy<T>(this IComparer<T> first, IComparer<T> second)
+##### `IComparer<T> ThenBy<T>(this IComparer<T> first, IComparer<T> second)`
 
 An extension method which, combines two comparers by creating a new comparer that uses the first comparer and falls back to the second comparer to break ties. For example, to compare points by X and then by Y you could do:
 ```C#
@@ -62,7 +62,7 @@ var xThenYComparer = Comparer.Create((Point p) => p.X)
 	.ThenBy(Comparer.Create((Point p) => p.X));
 ```
 
-##### Comparer<IEnumerable<T>> GetSequenceComparer<T>(IComparer<T>? elementComparer = null)
+##### `Comparer<IEnumerable<T>> GetSequenceComparer<T>(IComparer<T>? elementComparer = null)`
 
 Gets a comparer which sorts sequences *lexicographically*, with an optional element comparer to determine how individual elements are compared.
 
