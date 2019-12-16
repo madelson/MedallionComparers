@@ -47,7 +47,7 @@ namespace Medallion.Collections
                     ? 0
                     : ComputeOrderAgnosticHash(
                         this.AsSetWithMatchingElementComparer(obj)
-                        ?? new HashSet<TElement>(obj, this._elementComparer),
+                            ?? new HashSet<TElement>(obj, this._elementComparer),
                         this._elementComparer
                     );
 

@@ -9,24 +9,23 @@ namespace Medallion.Collections
     {
         /// <summary>
         /// Gets an <see cref="EqualityComparer{T}"/> that compares instances of <see cref="IEnumerable{TElement}"/> such
-        /// that two sequences with the same elements (but not necessarily the same order) are considered equal.
-        /// The optional <paramref name="elementComparer"/> can be used to override the comparison of individual elements
+        /// that two collections with the same elements (but not necessarily the same order) are considered equal. In other words,
+        /// compares for equivalence. The optional <paramref name="elementComparer"/> can be used to override the comparison of 
+        /// individual elements.
         /// </summary>
-        public static EqualityComparer<IEnumerable<TElement>> GetEnumerableEquivalenceComparer<TElement>(IEqualityComparer<TElement>? elementComparer = null)
-        {
-            return elementComparer == null || elementComparer == EqualityComparer<TElement>.Default
-                ? EnumerableEquivalenceEqualityComparer<TElement>.DefaultInstance
-                : new EnumerableEquivalenceEqualityComparer<TElement>(elementComparer);
-        }
+        public static EqualityComparer<IEnumerable<TElement>> GetCollectionComparer<TElement>(IEqualityComparer<TElement>? elementComparer = null) =>
+            elementComparer == null || elementComparer == EqualityComparer<TElement>.Default
+                ? CollectionComparer<TElement>.DefaultInstance
+                : new CollectionComparer<TElement>(elementComparer);
 
-        private sealed class EnumerableEquivalenceEqualityComparer<TElement> : EqualityComparer<IEnumerable<TElement>>
+        private sealed class CollectionComparer<TElement> : EqualityComparer<IEnumerable<TElement>>
         {
             private static EqualityComparer<IEnumerable<TElement>>? defaultInstance;
-            public static EqualityComparer<IEnumerable<TElement>> DefaultInstance => defaultInstance ??= new EnumerableEquivalenceEqualityComparer<TElement>(EqualityComparer<TElement>.Default);
+            public static EqualityComparer<IEnumerable<TElement>> DefaultInstance => defaultInstance ??= new CollectionComparer<TElement>(EqualityComparer<TElement>.Default);
 
             private readonly IEqualityComparer<TElement> elementComparer;
 
-            public EnumerableEquivalenceEqualityComparer(IEqualityComparer<TElement> elementComparer)
+            public CollectionComparer(IEqualityComparer<TElement> elementComparer)
             {
                 this.elementComparer = elementComparer;
             }
@@ -41,7 +40,7 @@ namespace Medallion.Collections
 
             public override int GetHashCode(IEnumerable<TElement> obj) => obj == null ? 0 : ComputeOrderAgnosticHash(obj, this.elementComparer);
 
-            public override bool Equals(object obj) => obj is EnumerableEquivalenceEqualityComparer<TElement> that && that.elementComparer.Equals(this.elementComparer);
+            public override bool Equals(object obj) => obj is CollectionComparer<TElement> that && that.elementComparer.Equals(this.elementComparer);
 
             // including this.GetType() so that we don't hash-collide with the underlying comparer
             public override int GetHashCode() => HashHelper.GetHashCode(this.GetType(), this.elementComparer.GetHashCode());

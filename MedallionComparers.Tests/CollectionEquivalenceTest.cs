@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MedallionComparers.Tests
 {
-    public class EnumerableEquivalenceTest
+    public class CollectionEquivalenceTest
     {
         [Test]
         public void TestEqualSequences()
@@ -180,7 +180,7 @@ namespace MedallionComparers.Tests
         {
             return new ComparisonResult
             {
-                CollectionEqualsResult = Profile(a, b, (a, b, c) => EqualityComparers.GetEnumerableEquivalenceComparer(c).Equals(a, b)),
+                CollectionEqualsResult = Profile(a, b, (a, b, c) => EqualityComparers.GetCollectionComparer(c).Equals(a, b)),
                 DictionaryMethodResult = Profile(a, b, DictionaryBasedEquals),
             };
         }
@@ -381,6 +381,6 @@ namespace MedallionComparers.Tests
         }
 
         private static bool AreEquivalent<T>(IEnumerable<T> a, IEnumerable<T> b, IEqualityComparer<T> comparer = null) => 
-            EqualityComparers.GetEnumerableEquivalenceComparer<T>(comparer).Equals(a, b);
+            EqualityComparers.GetCollectionComparer<T>(comparer).Equals(a, b);
     }
 }

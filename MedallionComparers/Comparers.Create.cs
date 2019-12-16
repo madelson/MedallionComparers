@@ -36,14 +36,8 @@ namespace Medallion.Collections
             public override int Compare(T x, T y)
             {
                 // from Comparer<T>.Compare(object, object)
-                if (x == null)
-                {
-                    return y == null ? 0 : -1;
-                }
-                if (y == null)
-                {
-                    return 1;
-                }
+                if (x == null) { return y == null ? 0 : -1; }
+                if (y == null) { return 1; }
 
                 return this.keyComparer.Compare(this.keySelector(x), this.keySelector(y));
             }

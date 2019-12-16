@@ -22,7 +22,7 @@ namespace MedallionComparers.Tests
             Assert.IsFalse(comparer.Equals(null, string.Empty));
             Assert.IsFalse(comparer.Equals(string.Empty, null));
             Assert.IsFalse(comparer.Equals("aa", "b"));
-            Assert.AreEqual(-1, comparer.GetHashCode("abc"));
+            Assert.AreEqual(17, comparer.GetHashCode("abc"));
 
             comparer = EqualityComparers.Create<string>((a, b) => a.Length == b.Length, s => s.Length);
             Assert.IsTrue(comparer.Equals("a", "b"));
@@ -61,22 +61,22 @@ namespace MedallionComparers.Tests
         }
 
         [Test]
-        public void TestEnumerableEquivalenceComparer()
+        public void TestCollectionComparer()
         {
             var a = new[] { 1, 2, 3 };
             var b = new[] { 3, 2, 1 };
             var c = new[] { 1, 2, 4 };
 
-            var comparer = EqualityComparers.GetEnumerableEquivalenceComparer<int>();
-            Assert.AreSame(comparer, EqualityComparers.GetEnumerableEquivalenceComparer<int>());
-            Assert.AreSame(comparer, EqualityComparers.GetEnumerableEquivalenceComparer(EqualityComparer<int>.Default));
+            var comparer = EqualityComparers.GetCollectionComparer<int>();
+            Assert.AreSame(comparer, EqualityComparers.GetCollectionComparer<int>());
+            Assert.AreSame(comparer, EqualityComparers.GetCollectionComparer(EqualityComparer<int>.Default));
             Assert.IsTrue(comparer.Equals(a, b));
             Assert.IsFalse(comparer.Equals(a, null));
             Assert.IsFalse(comparer.Equals(a, c));
             Assert.AreEqual(comparer.GetHashCode(b), comparer.GetHashCode(a));
             Assert.AreNotEqual(comparer.GetHashCode(a), comparer.GetHashCode(c));
 
-            var stringComparer = EqualityComparers.GetEnumerableEquivalenceComparer(StringComparer.OrdinalIgnoreCase);
+            var stringComparer = EqualityComparers.GetCollectionComparer(StringComparer.OrdinalIgnoreCase);
             var aa = new[] { "a", "B", "C" };
             var bb = new[] { "B", "A", "c" };
             var cc = new[] { "a", "B", "C", "d" };
@@ -183,11 +183,11 @@ namespace MedallionComparers.Tests
 
             ComparersTest.TestEquality(EqualityComparers.GetReferenceComparer<string>(), EqualityComparers.GetReferenceComparer<string>(), EqualityComparer<string>.Default);
 
-            ComparersTest.TestEquality(EqualityComparers.GetEnumerableEquivalenceComparer(EqualityComparer<string>.Default), EqualityComparers.GetEnumerableEquivalenceComparer<string>(), EqualityComparers.GetEnumerableEquivalenceComparer(StringComparer.OrdinalIgnoreCase));
+            ComparersTest.TestEquality(EqualityComparers.GetCollectionComparer(EqualityComparer<string>.Default), EqualityComparers.GetCollectionComparer<string>(), EqualityComparers.GetCollectionComparer(StringComparer.OrdinalIgnoreCase));
 
-            ComparersTest.TestEquality(EqualityComparers.GetSequenceComparer(StringComparer.Ordinal), EqualityComparers.GetSequenceComparer(StringComparer.Ordinal), EqualityComparers.GetEnumerableEquivalenceComparer(StringComparer.Ordinal));
+            ComparersTest.TestEquality(EqualityComparers.GetSequenceComparer(StringComparer.Ordinal), EqualityComparers.GetSequenceComparer(StringComparer.Ordinal), EqualityComparers.GetCollectionComparer(StringComparer.Ordinal));
 
-            ComparersTest.TestEquality(EqualityComparers.GetSetComparer(StringComparer.Ordinal), EqualityComparers.GetSetComparer(StringComparer.Ordinal), EqualityComparers.GetEnumerableEquivalenceComparer(StringComparer.Ordinal));
+            ComparersTest.TestEquality(EqualityComparers.GetSetComparer(StringComparer.Ordinal), EqualityComparers.GetSetComparer(StringComparer.Ordinal), EqualityComparers.GetCollectionComparer(StringComparer.Ordinal));
         }
     }
 }

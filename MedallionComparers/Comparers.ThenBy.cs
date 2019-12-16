@@ -10,10 +10,10 @@ namespace Medallion.Collections
         /// Gets a <see cref="Comparer{T}"/> which compares using <paramref name="first"/>
         /// and breaks ties with <paramref name="second"/>
         /// </summary>
-        public static Comparer<T> ThenBy<T>(this IComparer<T> first, IComparer<T> second) => 
+        public static IComparer<T> ThenBy<T>(this IComparer<T> first, IComparer<T> second) => 
             new ThenByComparer<T>(first ?? throw new ArgumentNullException(nameof(first)), second ?? throw new ArgumentNullException(nameof(second)));
 
-        private sealed class ThenByComparer<T> : Comparer<T>
+        private sealed class ThenByComparer<T> : IComparer<T>
         {
             private readonly IComparer<T> first, second;
 
@@ -23,7 +23,7 @@ namespace Medallion.Collections
                 this.second = second;
             }
 
-            public override int Compare(T x, T y)
+            public int Compare(T x, T y)
             {
                 var firstComparison = this.first.Compare(x, y);
                 return firstComparison != 0 ? firstComparison : this.second.Compare(x, y);
