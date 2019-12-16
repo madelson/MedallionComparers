@@ -16,9 +16,11 @@
     <RootNamespace>Medallion.Collections</RootNamespace>
 
     <PackageId>MedallionComparers</PackageId>
-    <Description></Description>
+    <Description>
+      MedallionComparers makes it easy to create IEqualityComparer&lt;T&gt;s and IComparer&lt;T&gt;s for any situation, including comparing collections.
+    </Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags></PackageTags>
+    <PackageTags>comparer equality hash icomparer iequalitycomparer reverse equivalence equivalent collection enumerable</PackageTags>
     <PackageProjectUrl>https://github.com/madelson/MedallionComparers</PackageProjectUrl>
     <PackageReleaseNotes>See https://github.com/madelson/MedallionComparers#release-notes</PackageReleaseNotes>
   </PropertyGroup>
