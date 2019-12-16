@@ -12,12 +12,10 @@ namespace Medallion.Collections
         /// with <see cref="Enumerable.SequenceEqual{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/>. The optional 
         /// <paramref name="elementComparer"/> can be used to override the comparison of individual elements
         /// </summary>
-        public static EqualityComparer<IEnumerable<TElement>> GetSequenceComparer<TElement>(IEqualityComparer<TElement>? elementComparer = null)
-        {
-            return elementComparer == null || elementComparer == EqualityComparer<TElement>.Default
+        public static EqualityComparer<IEnumerable<TElement>> GetSequenceComparer<TElement>(IEqualityComparer<TElement>? elementComparer = null) =>
+            elementComparer == null || elementComparer == EqualityComparer<TElement>.Default
                 ? SequenceComparer<TElement>.DefaultInstance
                 : new SequenceComparer<TElement>(elementComparer);
-        }
 
         private sealed class SequenceComparer<TElement> : EqualityComparer<IEnumerable<TElement>>
         {

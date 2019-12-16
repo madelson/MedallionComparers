@@ -20,7 +20,7 @@ namespace Medallion.Collections
 
         private sealed class FuncEqualityComparer<T> : EqualityComparer<T>
         {
-            private static readonly Func<T, int> DefaultHash = _ => -1;
+            private static readonly Func<T, int> DefaultHash = _ => HashHelper.StarterPrime;
 
             private readonly Func<T, T, bool> equals;
             private readonly Func<T, int> hash;
